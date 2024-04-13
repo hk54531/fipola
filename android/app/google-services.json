@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "874873938605",
+    "project_id": "react-native-push-notifi-99323",
+    "storage_bucket": "react-native-push-notifi-99323.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874873938605:android:505718dbc184354c0a1c24",
+        "android_client_info": {
+          "package_name": "com.fipolaproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874873938605-h808v5bjsmon2n0lsvq4p7epp7tjgr42.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnYM9uGIspwqWmlRaCPMEL4UqP5XoONBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874873938605-h808v5bjsmon2n0lsvq4p7epp7tjgr42.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

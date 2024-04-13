@@ -1,0 +1,95 @@
+To control the quantity data in the array of objects using Context API, you can follow the below steps:
+
+Create a new context for your data, let's call it "MyContext". You can use the createContext() function from React to create a new context:
+
+javascript
+Copy code
+import React from 'react';
+
+const MyContext = React.createContext();
+Create a state object that holds the flatListData2 array and a function to update it, let's call it "state". You can use the useState() hook from React to create a new state object:
+
+javascript
+Copy code
+import React, { useState } from 'react';
+
+const MyContext = React.createContext();
+
+const MyProvider = ({ children }) => {
+  const [state, setState] = useState({
+    flatListData2: [
+      {
+        id: 1,
+        type: 'mutton',
+        quantity: 0,
+        title: 'Mutton Biryani',
+        actualPrice: '122.00',
+        offPrice: '112.00',
+        img: 'https://i.postimg.cc/vT8DKTg7/mutton-transformed.jpg',
+      },
+      {
+        id: '2',
+        type: 'prawn',
+        quantity: 0,
+        title: 'Prawn Thokku',
+        actualPrice: '150.00',
+        offPrice: '180.00',
+        img: 'https://images.unsplash.com/photo-1625943553852-781c6dd46faa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1045&q=80',
+      },
+    ],
+  });
+
+  const updateQuantity = (id, quantity) => {
+    const newData = state.flatListData2.map((item) =>
+      item.id === id ? { ...item, quantity: quantity } : item
+    );
+    setState({ flatListData2: newData });
+  };
+
+  return (
+    <MyContext.Provider value={{ state, updateQuantity }}>
+      {children}
+    </MyContext.Provider>
+  );
+};
+
+export { MyContext, MyProvider };
+Wrap your components that use the flatListData2 array and the updateQuantity function with the MyProvider component to make the context available to them:
+
+javascript
+Copy code
+import React from 'react';
+import { MyProvider } from './MyContext';
+import MyComponent from './MyComponent';
+
+const App = () => {
+  return (
+    <MyProvider>
+      <MyComponent />
+    </MyProvider>
+  );
+};
+
+export default App;
+In your components, you can access the flatListData2 array and the updateQuantity function from the context using the useContext() hook from React:
+
+javascript
+Copy code
+import React, { useContext } from 'react';
+import { MyContext } from './MyContext';
+
+const MyComponent = () => {
+  const { state, updateQuantity } = useContext(MyContext);
+
+  const handleQuantityChange = (id, quantity) => {
+    updateQuantity(id, quantity);
+  };
+
+  return (
+    <div>
+      {state.flatListData2.map((item) => (
+        <div key={item.id}>
+          <h2>{item.title}</h2>
+          <p>{`Quantity: ${item.quantity}`}</p>
+          <button onClick={() => handleQuantityChange(item.id, item.quantity + 1)}>+</button>
+          <button onClick={() => handleQuantityChange
